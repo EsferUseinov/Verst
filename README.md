@@ -22,3 +22,15 @@
 - Unity 6 LTS, Universal Render Pipeline (URP)
 - Android Build Support (для збірок під Meta Quest)
 - Meta XR All-in-One SDK / Unity XRI (з Лаб. 2)
+
+## Сторонні ресурси
+
+Текстури – з [ambientCG](https://ambientcg.com), ліцензія [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+(вільне використання без обов'язкового зазначення авторства). Використано версії 1K-JPG, карти Color і NormalGL.
+
+| Ресурс | Де використано | Файли в проєкті |
+|---|---|---|
+| [Concrete 031](https://ambientcg.com/view?id=Concrete031) | підлога цеху | `Assets/_Project/Art/Textures/Floor/` |
+| [Concrete 034](https://ambientcg.com/view?id=Concrete034) | стіни, стеля | `Assets/_Project/Art/Textures/Wall/` |
+| [Wood 092](https://ambientcg.com/view?id=Wood092) | столи, стелаж, палета, ящик | `Assets/_Project/Art/Textures/Wood/` |
+| [Metal Plates 004](https://ambientcg.com/view?id=MetalPlates004) | верстати (заглушки) | `Assets/_Project/Art/Textures/PaintedMetal/` |
