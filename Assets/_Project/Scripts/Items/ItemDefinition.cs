@@ -6,7 +6,8 @@ public enum ItemCategory
     Fastener,
     Part,
     Container,
-    Test
+    Test,
+    Product
 }
 
 [CreateAssetMenu(fileName = "Item_", menuName = "Verst/Item Definition")]
