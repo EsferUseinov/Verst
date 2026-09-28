@@ -26,6 +26,7 @@ sysinfo.txt
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
@@ -41,3 +42,7 @@ sysinfo.txt
 # --- OS-generated files ---
 .DS_Store
 Thumbs.db
+
+# --- Machine-specific Meta SDK settings (local IP and access token) ---
+/Assets/Resources/DevAgentSettings.asset
+/Assets/Resources/DevAgentSettings.asset.meta
