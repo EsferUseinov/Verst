@@ -6,12 +6,17 @@ public class TabView : MonoBehaviour
     [SerializeField] private Button[] tabButtons;
     [SerializeField] private GameObject[] pages;
     [SerializeField] private int startPage;
+    [SerializeField] private Color activeColor = new Color(0.95f, 0.55f, 0.16f);
+
+    private ColorBlock[] defaultColors;
 
     private void Awake()
     {
+        defaultColors = new ColorBlock[tabButtons.Length];
         for (int i = 0; i < tabButtons.Length; i++)
         {
             int index = i;
+            defaultColors[i] = tabButtons[i].colors;
             tabButtons[i].onClick.AddListener(() => ShowPage(index));
         }
     }
@@ -30,7 +35,14 @@ public class TabView : MonoBehaviour
 
         for (int i = 0; i < tabButtons.Length; i++)
         {
-            tabButtons[i].interactable = i != index;
+            ColorBlock colors = defaultColors[i];
+            if (i == index)
+            {
+                colors.normalColor = activeColor;
+                colors.selectedColor = activeColor;
+                colors.highlightedColor = Color.Lerp(activeColor, Color.white, 0.25f);
+            }
+            tabButtons[i].colors = colors;
         }
     }
 }
