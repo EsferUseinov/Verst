@@ -47,6 +47,7 @@ public class CraftingStation : MonoBehaviour
         {
             Debug.Log(name + ": no recipe matches the slot contents");
             onCraftFailed.Invoke();
+            WorkshopEvents.Raise("craft_failed");
             return;
         }
 
@@ -66,6 +67,7 @@ public class CraftingStation : MonoBehaviour
         Debug.Log(name + ": crafted " + recipe.DisplayName);
 
         onCrafted.Invoke();
+        WorkshopEvents.Raise("crafted:" + recipe.Id);
         RefreshReady();
     }
 

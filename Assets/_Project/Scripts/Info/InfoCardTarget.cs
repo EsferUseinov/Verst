@@ -60,6 +60,11 @@ public class InfoCardTarget : MonoBehaviour
         }
         shown = value;
 
+        if (shown && item.Definition != null)
+        {
+            WorkshopEvents.Raise("hovered:" + item.Definition.Id);
+        }
+
         InfoCard card = InfoCard.Current;
         if (card == null)
         {
