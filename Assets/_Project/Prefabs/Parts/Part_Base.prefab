@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 1474107639162292214}
   - component: {fileID: 3105551207030952039}
   - component: {fileID: 5961891859464503897}
+  - component: {fileID: 3503138346656099573}
   m_Layer: 0
   m_Name: Part_Base
   m_TagString: Untagged
@@ -334,6 +335,24 @@ MonoBehaviour:
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
+--- !u!114 &3503138346656099573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808976515088364407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0028402d56431149a2d0c5a04c49c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InfoCardTarget
+  item: {fileID: 1474107639162292214}
+  interactables:
+  - {fileID: 461563194748026054}
+  - {fileID: 8816149879780807108}
+  - {fileID: 9180783922487820314}
+  - {fileID: 1856431399997577255}
 --- !u!1 &6898612278500889067
 GameObject:
   m_ObjectHideFlags: 0

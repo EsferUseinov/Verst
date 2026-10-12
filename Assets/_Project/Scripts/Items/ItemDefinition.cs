@@ -16,8 +16,10 @@ public class ItemDefinition : ScriptableObject
     [SerializeField] private string id;
     [SerializeField] private string displayName;
     [SerializeField] private ItemCategory category;
+    [SerializeField, TextArea] private string description;
 
     public string Id => id;
     public string DisplayName => displayName;
     public ItemCategory Category => category;
+    public string Description => description;
 }
