@@ -9,9 +9,11 @@ public class TabView : MonoBehaviour
     [SerializeField] private Color activeColor = new Color(0.95f, 0.55f, 0.16f);
 
     private ColorBlock[] defaultColors;
+    private int currentPage;
 
     private void Awake()
     {
+        currentPage = startPage;
         defaultColors = new ColorBlock[tabButtons.Length];
         for (int i = 0; i < tabButtons.Length; i++)
         {
@@ -23,11 +25,12 @@ public class TabView : MonoBehaviour
 
     private void OnEnable()
     {
-        ShowPage(startPage);
+        ShowPage(currentPage);
     }
 
     public void ShowPage(int index)
     {
+        currentPage = index;
         for (int i = 0; i < pages.Length; i++)
         {
             pages[i].SetActive(i == index);

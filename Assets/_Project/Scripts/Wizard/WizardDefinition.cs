@@ -5,7 +5,8 @@ using UnityEngine;
 public enum WizardStepType
 {
     Info,
-    SingleChoice
+    SingleChoice,
+    Action
 }
 
 [Serializable]
@@ -17,6 +18,10 @@ public class WizardStep
     [SerializeField] private string[] options = new string[0];
     [SerializeField] private int correctOption;
     [SerializeField, TextArea] private string explanation;
+    [SerializeField] private string expectedEvent;
+    [SerializeField] private string failEvent;
+    [SerializeField, TextArea] private string failHint;
+    [SerializeField] private string markerId;
 
     public WizardStepType Type => type;
     public string Title => title;
@@ -24,6 +29,10 @@ public class WizardStep
     public IReadOnlyList<string> Options => options;
     public int CorrectOption => correctOption;
     public string Explanation => explanation;
+    public string ExpectedEvent => expectedEvent;
+    public string FailEvent => failEvent;
+    public string FailHint => failHint;
+    public string MarkerId => markerId;
 }
 
 [CreateAssetMenu(fileName = "Wizard_", menuName = "Verst/Wizard Definition")]

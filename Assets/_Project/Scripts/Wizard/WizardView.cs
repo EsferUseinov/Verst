@@ -35,6 +35,7 @@ public class WizardView : MonoBehaviour
     [Header("Colors")]
     [SerializeField] private Color goodColor = new Color(0.45f, 0.85f, 0.45f);
     [SerializeField] private Color badColor = new Color(0.9f, 0.3f, 0.25f);
+    [SerializeField] private Color hintColor = new Color(0.725f, 0.65f, 0.91f);
 
     private void Awake()
     {
@@ -92,9 +93,9 @@ public class WizardView : MonoBehaviour
         introText.text = definition.Intro;
 
         WizardResult last = controller.LastSavedResult;
-        if (last != null)
+        if (last != null && last.wizardId == definition.Id)
         {
-            introText.text += $"\n\nОстанній результат: {last.correct} з {last.questions}, {(last.passed ? "пройдено" : "не пройдено")}";
+            introText.text += $"\n\nОстанній результат: {last.correct} з {last.checkedSteps}, {(last.passed ? "пройдено" : "не пройдено")}";
         }
 
         startButton.interactable = controller.CanBegin;
@@ -108,7 +109,7 @@ public class WizardView : MonoBehaviour
         WizardStep step = controller.CurrentStep;
         progressText.text = $"Крок {controller.StepIndex + 1} з {controller.Definition.Steps.Count}";
         stepTitle.text = step.Title;
-        stepText.text = step.Text;
+        stepText.text = step.Type == WizardStepType.Action ? FormatAction(step) : step.Text;
 
         bool isQuestion = step.Type == WizardStepType.SingleChoice;
         for (int i = 0; i < optionButtons.Length; i++)
@@ -120,7 +121,17 @@ public class WizardView : MonoBehaviour
                 optionButtons[i].GetComponentInChildren<TMP_Text>().text = step.Options[i];
             }
         }
-        nextButton.gameObject.SetActive(!isQuestion);
+        nextButton.gameObject.SetActive(step.Type == WizardStepType.Info);
+    }
+
+    private string FormatAction(WizardStep step)
+    {
+        string text = step.Text;
+        if (controller.StepErrors > 0 && !string.IsNullOrEmpty(step.FailHint))
+        {
+            text += $"\n\n<color=#{ColorUtility.ToHtmlStringRGB(badColor)}>{step.FailHint}</color>";
+        }
+        return text + $"\n\n<color=#{ColorUtility.ToHtmlStringRGB(hintColor)}>Крок зарахується сам, щойно зробиш це в цеху.</color>";
     }
 
     private void RenderFeedback()
@@ -147,7 +158,7 @@ public class WizardView : MonoBehaviour
     private static string FormatResult(WizardResult result)
     {
         return $"Оператор: {result.operatorId}\n"
-            + $"Правильних відповідей: {result.correct} з {result.questions}\n"
+            + $"Кроків без помилок: {result.correct} з {result.checkedSteps}\n"
             + $"Помилок: {result.errors}\n"
             + $"Час: {result.durationSec:0.0} с\n"
             + $"Результат: {result.score * 100f:0}% – {(result.passed ? "пройдено" : "не пройдено")}";

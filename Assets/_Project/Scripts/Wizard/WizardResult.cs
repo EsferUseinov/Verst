@@ -6,6 +6,7 @@ public class WizardAnswer
 {
     public int step;
     public int selected;
+    public int errors;
     public bool correct;
 }
 
@@ -17,7 +18,7 @@ public class WizardResult
     public string startedAt;
     public string finishedAt;
     public float durationSec;
-    public int questions;
+    public int checkedSteps;
     public int correct;
     public int errors;
     public float score;
