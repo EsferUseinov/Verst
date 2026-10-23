@@ -28,6 +28,9 @@ public class MachineController : MonoBehaviour
     private float currentSpeed;
     private Coroutine error;
 
+    public bool IsRunning => running;
+    public float SpeedFactor => maxSpeed > 0f ? currentSpeed / maxSpeed : 0f;
+
     private void OnEnable()
     {
         if (requiredNode != null)
@@ -147,13 +150,13 @@ public class MachineController : MonoBehaviour
         if (running)
         {
             SetLamps(runningColor);
-            statusText.text = $"{runningMessage} – {percent}%";
+            statusText.text = $"{runningMessage}: {percent}%";
             statusText.color = runningColor;
         }
         else if (powered)
         {
             SetLamps(poweredColor);
-            statusText.text = $"{readyMessage} – {percent}%";
+            statusText.text = $"{readyMessage}: {percent}%";
             statusText.color = poweredColor;
         }
         else
