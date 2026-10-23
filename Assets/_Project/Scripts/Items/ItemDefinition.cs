@@ -7,7 +7,8 @@ public enum ItemCategory
     Part,
     Container,
     Test,
-    Product
+    Product,
+    Raw
 }
 
 [CreateAssetMenu(fileName = "Item_", menuName = "Verst/Item Definition")]
