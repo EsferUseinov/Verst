@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/Scenes/Scene_Lab4_Hands.unity
+    guid: bfa9e06e932ed794fb4076448c7fc13a
+  - enabled: 0
     path: Assets/_Project/Scenes/Scene_Lab3_UI.unity
     guid: a161ace7922ca39468b08691fe7dd94f
   - enabled: 0

@@ -19,9 +19,11 @@ public class RecipeDefinition : ScriptableObject
     [SerializeField] private string displayName;
     [SerializeField] private List<RecipeIngredient> ingredients = new List<RecipeIngredient>();
     [SerializeField] private Item resultPrefab;
+    [SerializeField] private ItemDefinition requiredTool;
 
     public string Id => id;
     public string DisplayName => displayName;
     public IReadOnlyList<RecipeIngredient> Ingredients => ingredients;
     public Item ResultPrefab => resultPrefab;
+    public ItemDefinition RequiredTool => requiredTool;
 }

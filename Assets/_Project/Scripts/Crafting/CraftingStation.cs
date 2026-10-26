@@ -145,6 +145,12 @@ public class CraftingStation : MonoBehaviour
             }
         }
 
+        if (recipe.RequiredTool != null && !pool.Exists(item => item.Definition == recipe.RequiredTool))
+        {
+            ingredients.Clear();
+            return false;
+        }
+
         return true;
     }
 }
