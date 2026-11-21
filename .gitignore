@@ -43,6 +43,10 @@ sysinfo.txt
 .DS_Store
 Thumbs.db
 
+# --- Mock server runtime output ---
+/Tools/MockServer/reports/
+__pycache__/
+
 # --- Machine-specific Meta SDK settings (local IP and access token) ---
 /Assets/Resources/DevAgentSettings.asset
 /Assets/Resources/DevAgentSettings.asset.meta
