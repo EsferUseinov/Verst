@@ -8,6 +8,7 @@ public class ItemDispenser : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField, Min(1)] private int limit = 3;
     [SerializeField] private float stackStep = 0.08f;
+    [SerializeField] private RawSupply supply;
     [SerializeField] private TMP_Text label;
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color limitColor = new Color(1f, 0.15f, 0.1f);
@@ -28,6 +29,11 @@ public class ItemDispenser : MonoBehaviour
     {
         int count = Count();
         if (count >= limit)
+        {
+            return;
+        }
+
+        if (supply != null && !supply.TryTake())
         {
             return;
         }
