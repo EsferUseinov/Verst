@@ -39,6 +39,7 @@ public class BattleController : MonoBehaviour
     private int lives;
     private int wonWaves;
     private string lastResult = "";
+    private bool skipRequested;
 
     public BattleState State { get; private set; }
 
@@ -61,7 +62,12 @@ public class BattleController : MonoBehaviour
     {
         if (State == BattleState.Fighting)
         {
-            startButton.ShowFailed();
+            if (!skipRequested)
+            {
+                skipRequested = true;
+                startButton.ShowCrafted();
+                RefreshBoard();
+            }
             return;
         }
 
@@ -89,6 +95,7 @@ public class BattleController : MonoBehaviour
     private IEnumerator RunWave(List<ItemDefinition> cargo)
     {
         State = BattleState.Fighting;
+        skipRequested = false;
         WaveDefinition wave = config.Waves[waveIndex];
 
         int reinforcements = CountEffect(cargo, BattleEffect.Reinforcement);
@@ -106,7 +113,10 @@ public class BattleController : MonoBehaviour
         int ticks = 0;
         while (AnyAlive(allies) && AnyAlive(enemies) && ticks < config.MaxTicks)
         {
-            yield return new WaitForSeconds(config.TickSec);
+            if (!skipRequested)
+            {
+                yield return new WaitForSeconds(config.TickSec);
+            }
             Exchange(pierce);
             ticks++;
         }
@@ -283,6 +293,7 @@ public class BattleController : MonoBehaviour
             case BattleState.Fighting:
                 text.AppendLine($"<b>Хвиля {waveIndex + 1} з {total}: бій</b>");
                 text.AppendLine(lastResult);
+                text.AppendLine(skipRequested ? "Бій дораховується..." : "Натисни «До битви» ще раз, щоб завершити бій одразу");
                 break;
             case BattleState.Victory:
                 text.AppendLine("<b>Перемога!</b>");
@@ -303,7 +314,7 @@ public class BattleController : MonoBehaviour
         {
             lifeLamps[i].material.color = i < lives ? lifeOnColor : lifeOffColor;
         }
-        startButton.SetReady(State != BattleState.Fighting);
+        startButton.SetReady(!skipRequested || State != BattleState.Fighting);
     }
 
     private List<ItemDefinition> CurrentCargo()
