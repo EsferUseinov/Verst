@@ -80,7 +80,6 @@ public class SensorDashboardView : MonoBehaviour
             string color = ColorUtility.ToHtmlStringRGB(StatusColor(machine.status));
             builder.AppendLine($"<b>{machine.name}</b>  <color=#{color}>{StatusLabel(machine.status)}</color>");
             builder.AppendLine($"{machine.temperature:0.0} °C   {machine.rpm} об/хв   навантаження {machine.load * 100f:0}%");
-            builder.AppendLine();
         }
         machinesText.text = builder.ToString().TrimEnd();
         status.Show(NetworkState.Success, $"оновлено о {FormatTime(snapshot.updatedAt)}");
