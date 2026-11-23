@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class PokeToggleSwitch : MonoBehaviour
 {
     [SerializeField, Interface(typeof(IInteractableView))] private Object interactable;
+    [SerializeField, Interface(typeof(IInteractableView)), Optional] private Object rayInteractable;
     [SerializeField] private Transform lever;
     [SerializeField] private float offAngle = -25f;
     [SerializeField] private float onAngle = 25f;
@@ -15,23 +16,33 @@ public class PokeToggleSwitch : MonoBehaviour
     [SerializeField] private UnityEvent<bool> onChanged = new UnityEvent<bool>();
 
     private IInteractableView view;
+    private IInteractableView rayView;
 
     public bool IsOn => isOn;
 
     private void Awake()
     {
         view = interactable as IInteractableView;
+        rayView = rayInteractable as IInteractableView;
     }
 
     private void OnEnable()
     {
         view.WhenStateChanged += HandleStateChanged;
+        if (rayView != null)
+        {
+            rayView.WhenStateChanged += HandleStateChanged;
+        }
         Apply();
     }
 
     private void OnDisable()
     {
         view.WhenStateChanged -= HandleStateChanged;
+        if (rayView != null)
+        {
+            rayView.WhenStateChanged -= HandleStateChanged;
+        }
     }
 
     public void SetOn(bool value)
