@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ac76e97aaa05b4a993c769317afe3d, type: 3}
+  m_Name: BattleConfig
+  m_EditorClassIdentifier: Assembly-CSharp::BattleConfig
+  soldier:
+    prefab: {fileID: 7215149929047469790, guid: 85c2681da59ba684a96b98c486e8ca68, type: 3}
+    displayName: "\u0431\u043E\u0454\u0446\u044C"
+    hp: 10
+    damage: 3
+    armor: 0
+  baseSquad: 4
+  swarm:
+    prefab: {fileID: 4834378334029981851, guid: 964613c9313c35245a12d2250de277f9, type: 3}
+    displayName: "\u0440\u0456\u0439"
+    hp: 3
+    damage: 2
+    armor: 0
+  shooter:
+    prefab: {fileID: 349402339091166253, guid: 4da40c1734a58024392ff0915abbc960, type: 3}
+    displayName: "\u0441\u0442\u0440\u0456\u043B\u0435\u0446\u044C"
+    hp: 10
+    damage: 10
+    armor: 0
+  armored:
+    prefab: {fileID: 6588649040543111579, guid: 308e32f1188c13a4ab698e3249492d21, type: 3}
+    displayName: "\u0431\u0440\u043E\u043D\u044C\u043E\u0432\u0430\u043D\u0438\u0439"
+    hp: 12
+    damage: 3
+    armor: 3
+  soldiersPerReinforcement: 2
+  armorPerProduct: 6
+  piercePerProduct: 3
+  lives: 3
+  tickSec: 0.6
+  maxTicks: 60
+  resultPauseSec: 2
+  waves:
+  - swarm: 5
+    shooters: 0
+    armored: 0
+  - swarm: 0
+    shooters: 4
+    armored: 0
+  - swarm: 2
+    shooters: 0
+    armored: 3
+  - swarm: 12
+    shooters: 0
+    armored: 0
+  - swarm: 3
+    shooters: 3
+    armored: 2

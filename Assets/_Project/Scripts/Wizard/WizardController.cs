@@ -18,6 +18,7 @@ public class WizardController : MonoBehaviour
     [SerializeField] private ProfileStore profileStore;
 
     public event Action Changed;
+    public event Action<WizardResult> Finished;
 
     public WizardDefinition Definition => definition;
     public WizardState State { get; private set; } = WizardState.Intro;
@@ -185,6 +186,7 @@ public class WizardController : MonoBehaviour
         Debug.Log($"Wizard result: {json}");
 
         GoTo(WizardState.Result);
+        Finished?.Invoke(CurrentResult);
     }
 
     private void GoTo(WizardState state)
