@@ -12,9 +12,8 @@ REPORTS_DIR = Path(__file__).resolve().parent / "reports"
 REQUIRED_REPORT_FIELDS = ("operatorId", "wizardId", "durationSec", "errors")
 
 MACHINES = [
-    {"id": "lathe", "name": "Lathe", "base_temp": 40.0, "base_rpm": 900, "phase": 0.0},
-    {"id": "mill", "name": "Mill", "base_temp": 45.0, "base_rpm": 1400, "phase": 2.1},
-    {"id": "press", "name": "Press", "base_temp": 50.0, "base_rpm": 60, "phase": 4.2},
+    {"id": "machine_1", "name": "Верстат 1 (обробка)", "base_temp": 48.0, "base_rpm": 720, "base_load": 0.6, "phase": 0.0},
+    {"id": "machine_2", "name": "Верстат 2 (резерв)", "base_temp": 25.0, "base_rpm": 600, "base_load": 0.1, "phase": 2.1},
 ]
 
 WARNING_TEMP = 70.0
@@ -27,7 +26,8 @@ def utc_now():
 
 def read_machine(machine):
     wave = math.sin(time.time() / 15.0 + machine["phase"])
-    load = min(1.0, max(0.0, 0.6 + 0.35 * wave + random.uniform(-0.05, 0.05)))
+    swing = 0.35 if machine["base_load"] >= 0.5 else 0.05
+    load = min(1.0, max(0.0, machine["base_load"] + swing * wave + random.uniform(-0.03, 0.03)))
     temperature = machine["base_temp"] + 35.0 * load + random.uniform(-1.0, 1.0)
 
     if temperature >= ALARM_TEMP:
